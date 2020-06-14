@@ -29,6 +29,12 @@ export default {
   },
 
   auth: {
+    plugins: [
+      {
+        src: '~plugins/auth.js',
+        ssr: false
+      }
+    ],
     strategies: {
       local: {
         endpoints: {
