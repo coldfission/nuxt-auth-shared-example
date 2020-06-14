@@ -18,16 +18,10 @@ router.use((req, res, next) => {
 router.post("/login", (req, res) => {
   if (req.body.username === "demo" && req.body.password === "demo") {
     return res.json({
-      username: "demo",
       token: "testing123"
     });
   }
   res.status(401).json({ message: "Bad credentials" });
-});
-
-// Add POST - /api/logout
-router.post("/logout", (req, res) => {
-  res.json({ ok: true });
 });
 
 // Export the server middleware
