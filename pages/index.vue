@@ -4,15 +4,18 @@
     <form v-if="!$auth.loggedIn" @submit.prevent="login">
       <p v-if="formError" class="error">{{ formError }}</p>
       <p>
-        <i>To login, use
+        <i>
+          To login, use
           <b>demo</b> as username and
           <b>demo</b> as password.
         </i>
       </p>
-      <p>Username:
+      <p>
+        Username:
         <input v-model="formUsername" type="text" name="username">
       </p>
-      <p>Password:
+      <p>
+        Password:
         <input v-model="formPassword" type="password" name="password">
       </p>
       <button type="submit">Login</button>
@@ -43,9 +46,11 @@ export default {
   methods: {
     async login() {
       try {
-        await this.$store.dispatch("login", {
-          username: this.formUsername,
-          password: this.formPassword
+        await this.$auth.loginWith("local", {
+          data: {
+            username: this.formUsername,
+            password: this.formPassword
+          }
         });
         this.formUsername = "";
         this.formPassword = "";
